@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+*.pyo
+venv/
+.venv/
+data/raw/
+data/processed/
+agents/*.zip
+agents/*.pkl
+agents/_hp_vecnorm.pkl
+evaluation/plots/*.png
+.DS_Store
+*.egg-info/
+dist/
+build/
+.idea/
+.vscode/
