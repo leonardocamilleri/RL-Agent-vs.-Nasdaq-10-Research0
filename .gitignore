@@ -9,6 +9,8 @@ agents/*.zip
 agents/*.pkl
 agents/_hp_vecnorm.pkl
 evaluation/plots/*.png
+reports/*.json
+logs/
 .DS_Store
 *.egg-info/
 dist/
