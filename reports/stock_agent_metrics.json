@@ -1,0 +1,70 @@
+{
+  "Val": {
+    "PPO Agent (K=20)": {
+      "CAGR": 0.438735,
+      "Ann. Vol": 0.267074,
+      "Sharpe": 1.497202,
+      "Sortino": 2.143945,
+      "Max DD": -0.296348,
+      "Avg Turnover": 0.035002,
+      "Avg Held": 45.495376,
+      "Avg Cash": 0.020218
+    },
+    "QQQ Buy&Hold": {
+      "CAGR": 0.381915,
+      "Ann. Vol": 0.249182,
+      "Sharpe": 1.424226,
+      "Sortino": 2.016434,
+      "Max DD": -0.285594,
+      "Avg Turnover": 0.0
+    },
+    "Momentum Top-20": {
+      "CAGR": 0.416535,
+      "Ann. Vol": 0.240652,
+      "Sharpe": 1.568998,
+      "Sortino": 2.252795,
+      "Max DD": -0.304379,
+      "Avg Turnover": 0.019476
+    }
+  },
+  "Test": {
+    "PPO Agent (K=20)": {
+      "CAGR": 0.155023,
+      "Ann. Vol": 0.2611,
+      "Sharpe": 0.682102,
+      "Sortino": 1.012513,
+      "Max DD": -0.299591,
+      "Avg Turnover": 0.043538,
+      "Avg Held": 49.155857,
+      "Avg Cash": 0.020334
+    },
+    "QQQ Buy&Hold": {
+      "CAGR": 0.110232,
+      "Ann. Vol": 0.234855,
+      "Sharpe": 0.562423,
+      "Sortino": 0.80718,
+      "Max DD": -0.34828,
+      "Avg Turnover": 0.0
+    },
+    "Momentum Top-20": {
+      "CAGR": 0.116278,
+      "Ann. Vol": 0.213653,
+      "Sharpe": 0.621207,
+      "Sortino": 0.916202,
+      "Max DD": -0.246701,
+      "Avg Turnover": 0.02148
+    }
+  },
+  "config": {
+    "K": 20,
+    "alpha": 0.1,
+    "cost_rate": 0.001,
+    "timesteps": 2000000,
+    "seed": 42,
+    "n_tickers": 70,
+    "obs_dim": 772,
+    "train_days": 2235,
+    "val_days": 757,
+    "test_days": 1033
+  }
+}

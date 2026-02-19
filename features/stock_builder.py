@@ -102,14 +102,26 @@ def build_stock_dataset(daily_prices: pd.DataFrame,
     """
     all_feat = compute_stock_features(daily_prices, daily_volumes, tickers)
 
-    # Find first date where ALL tickers have valid (non-NaN) features
+    # Find dates where features are valid.
+    # For live inference (short IBKR history) not every ticker will have
+    # 252 days of warmup, so we fall back to requiring >= 50 % valid.
     valid_per_ticker = {}
     for ticker in tickers:
         valid_per_ticker[ticker] = all_feat[ticker].notna().all(axis=1)
 
-    combined_valid = pd.DataFrame(valid_per_ticker).all(axis=1)
+    valid_df = pd.DataFrame(valid_per_ticker)
+    min_tickers = max(1, int(len(tickers) * 0.50))
+
+    # Prefer dates where ALL tickers are valid; fall back to >= 50 %
+    combined_all = valid_df.all(axis=1)
+    if combined_all.any():
+        combined_valid = combined_all
+    else:
+        n_valid_per_date = valid_df.sum(axis=1)
+        combined_valid = n_valid_per_date >= min_tickers
+
     if not combined_valid.any():
-        raise ValueError("No date with valid features for all tickers.")
+        raise ValueError("No date with valid features for enough tickers.")
 
     first_valid = combined_valid.idxmax()
     valid_dates = daily_prices.index[daily_prices.index >= first_valid]

@@ -50,7 +50,7 @@ TICKERS_PATH = "agents/stock_tickers.json"
 TWS_HOST = "127.0.0.1"
 TWS_PORT = 7497
 TWS_CLIENT_ID = 20
-HISTORY_DURATION = "2 Y"
+HISTORY_DURATION = "3 Y"
 
 LOG_DIR = "logs"
 LOG_FILE = "live_trading_stocks.log"
