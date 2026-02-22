@@ -1,4 +1,4 @@
-# Reinforcement Learning for Dynamic Equity Allocation
+# Time-Varying Reinforcement Learning Agent for Dynamic Factor Investment in Equity Markets
 ### Research Project – Nasdaq-100 Stock Selection
 
 This project explores the use of deep reinforcement learning to dynamically select and allocate capital across stocks in the Nasdaq-100 universe.
