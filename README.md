@@ -1,45 +1,81 @@
 # Time-Varying Reinforcement Learning Agent for Dynamic Factor Investment in Equity Markets
 ### Research Project – Nasdaq-100 Stock Selection
 
-This project explores the use of deep reinforcement learning to dynamically select and allocate capital across stocks in the Nasdaq-100 universe.
+This project investigates whether deep reinforcement learning can improve risk-adjusted performance through dynamic stock selection within the Nasdaq-100 universe.
 
-The objective is to investigate whether an RL agent can improve risk-adjusted returns relative to a passive benchmark by adapting to changing market regimes.
+Rather than predicting returns directly, the agent learns an allocation policy that adapts to changing market regimes using multi-horizon factor inputs and risk-aware reward shaping.
+
+---
+
+## Research Motivation
+
+Traditional factor models assume relatively stable relationships between signals and returns. Financial markets, however, are non-stationary.
+
+This research explores:
+
+- Can an RL agent adapt dynamically to regime changes?
+- Does policy-based allocation improve Sharpe ratio vs passive exposure?
+- How sensitive is performance to reward design and feature construction?
 
 ---
 
 ## Methodology
 
-The system is built around:
+### Feature Engineering
+- Multi-horizon momentum (1d, 5d, 21d, 63d, 252d)
+- Rolling volatility measures
+- Trend indicators
+- Standardized cross-sectional factor inputs
 
-- Multi-horizon momentum and volatility features
-- Custom Gym-based stock selection environment
+### Environment Design
+A custom Gym environment models stock selection:
+
+- Observation: per-stock feature tensor
+- Action: top-k allocation selection
+- Reward: portfolio return with turnover penalty
+- Optional volatility-adjusted objective
+
+### Learning Algorithm
 - Proximal Policy Optimization (PPO)
-- Risk-adjusted reward formulation
-- Out-of-sample evaluation
-
-The agent learns to allocate capital across a subset of stocks while incorporating turnover constraints and volatility considerations.
-
----
-
-## Key Components
-
-- Feature engineering pipeline
-- Custom reinforcement learning environment
-- PPO training framework (Stable Baselines3)
-- Backtesting and performance evaluation tools
+- Stable Baselines3 implementation
+- VecNormalize for observation scaling
+- Rolling-window training for out-of-sample robustness
 
 ---
 
-## Research Questions
+## Evaluation Framework
 
-- Can reinforcement learning adapt to structural market shifts?
-- Does dynamic stock selection improve Sharpe ratio vs passive exposure?
-- How sensitive is performance to feature design and reward structure?
+Performance is evaluated using:
+
+- CAGR
+- Sharpe Ratio
+- Sortino Ratio
+- Maximum Drawdown
+- Turnover metrics
+- Benchmark comparison vs QQQ
+
+Out-of-sample testing is emphasized to reduce overfitting risk.
 
 ---
 
-## Status
+## Key Insights
+
+- Reward shaping materially impacts turnover and risk profile.
+- Multi-horizon momentum features improve stability.
+- Policy learning adapts better during volatility clustering than static allocation rules.
+
+---
+
+## Limitations & Future Work
+
+- Transaction costs and slippage modeling can be refined.
+- Regime conditioning may improve robustness.
+- Further cross-validation across market cycles is ongoing.
+
+---
+
+## Repository Scope
 
 This repository contains the research implementation used for experimentation and backtesting.
 
-Execution and live trading infrastructure are intentionally excluded.
+Live execution and brokerage infrastructure are intentionally excluded.
